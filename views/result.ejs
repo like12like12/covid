@@ -58,7 +58,7 @@
                     <div class="media-body pl-3">
                         <h5 id="01">name</h5>
                         <p id="02">detail</p>
-                        <i onclick=alert("fav") class="far fa-heart"></i>
+                        <i onclick=fav(id[0]) class="far fa-heart"></i>
                     </div>
                 </div>
                 <div class="media" style="padding-top:10px;padding-bottom:10px">
@@ -66,7 +66,7 @@
                     <div class="media-body pl-3">
                         <h5 id="11">name</h5>
                         <p id="12">detail</p>
-                        <i onclick=alert("fav") class="far fa-heart"></i>
+                        <i onclick=fav(id[1]) class="far fa-heart"></i>
                     </div>
                 </div>
                 <div class="media" style="padding-top:10px;padding-bottom:10px">
@@ -74,7 +74,7 @@
                     <div class="media-body pl-3">
                         <h5 id="21">name</h5>
                         <p id="22">detail</p>
-                        <i onclick=alert("fav") class="far fa-heart"></i>
+                        <i onclick=fav(id[2]) class="far fa-heart"></i>
                     </div>
                 </div>
                 <div class="media" style="padding-top:10px;padding-bottom:10px">
@@ -82,7 +82,7 @@
                     <div class="media-body pl-3">
                         <h5 id="31">name</h5>
                         <p id="32">detail</p>
-                        <i onclick=alert("fav") class="far fa-heart"></i>
+                        <i onclick=fav(id[3]) class="far fa-heart"></i>
                     </div>
                 </div>
                 <div class="media" style="padding-top:10px;padding-bottom:10px">
@@ -90,7 +90,7 @@
                     <div class="media-body pl-3">
                         <h5 id="41">name</h5>
                         <p id="42">detail</p>
-                        <i onclick=alert("fav") class="far fa-heart"></i>
+                        <i onclick=fav(id[4]) class="far fa-heart"></i>
                     </div>
                 </div>
         </section>
@@ -146,20 +146,15 @@
         <script src="js/bootstrap/bootstrap.min.js"></script>
         <!-- pagination -->
         <script src="js/pagination.js"></script>
-        <!-- Bootstrap core JS-->
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script> -->
-        <!-- Third party plugin JS-->
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script> -->
-        <!-- Contact form JS-->
-        <!-- <script src="assets/mail/jqBootstrapValidation.js"></script>
-        <script src="assets/mail/contact_me.js"></script> -->
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        <!-- favorite -->
+        <script src="js/favorite.js"></script>
         <!-- jQuery-2.2.4 js -->
         <script src="js/jquery/jquery-2.2.4.min.js"></script>
         <script>
-            $(document).ready(function() {
+            $(document).ready(readcookie(),setup())
+            function setup() {
 
             $.ajaxSetup({
                 headers: {
@@ -186,30 +181,36 @@
                 document.getElementById("01").innerHTML = JSON.stringify(json.result[0].place_name).slice(1, -1)
                 document.getElementById("02").innerHTML = JSON.stringify(json.result[0].location.address).slice(1, -1)
                 if(json.result[0].thumbnail_url){document.getElementById("03").src = JSON.stringify(json.result[0].thumbnail_url).slice(1, -1)}
+                id[0]=JSON.stringify(json.result[0].place_id).slice(1, -1)
                 
                 // document.getElementById("04").href = "single-listing?type=" + JSON.stringify(json.result[0].category_code).slice(1, -1) + "&id=" + JSON.stringify(json.result[0].place_id).slice(1, -1)
                 
                 document.getElementById("11").innerHTML = JSON.stringify(json.result[1].place_name).slice(1, -1)
                 document.getElementById("12").innerHTML = JSON.stringify(json.result[1].location.address).slice(1, -1)
                 if(json.result[1].thumbnail_url){document.getElementById("13").src = JSON.stringify(json.result[1].thumbnail_url).slice(1, -1)}
+                id[1]=JSON.stringify(json.result[1].place_id).slice(1, -1)
                 // document.getElementById("14").href = "single-listing?type=" + JSON.stringify(json.result[1].category_code).slice(1, -1) + "&id=" + JSON.stringify(json.result[1].place_id).slice(1, -1)
 
                 document.getElementById("21").innerHTML = JSON.stringify(json.result[2].place_name).slice(1, -1)
                 document.getElementById("22").innerHTML = JSON.stringify(json.result[2].location.address).slice(1, -1)
                 if(json.result[2].thumbnail_url){ document.getElementById("23").src = JSON.stringify(json.result[2].thumbnail_url).slice(1, -1)}
+                id[2]=JSON.stringify(json.result[2].place_id).slice(1, -1)
                 // document.getElementById("24").href = "single-listing?type=" + JSON.stringify(json.result[2].category_code).slice(1, -1) + "&id=" + JSON.stringify(json.result[2].place_id).slice(1, -1)
 
                 document.getElementById("31").innerHTML = JSON.stringify(json.result[3].place_name).slice(1, -1)
                 document.getElementById("32").innerHTML = JSON.stringify(json.result[3].location.address).slice(1, -1)
                 if(json.result[3].thumbnail_url){document.getElementById("33").src = JSON.stringify(json.result[3].thumbnail_url).slice(1, -1)}
+                id[3]=JSON.stringify(json.result[3].place_id).slice(1, -1)
                 // document.getElementById("34").href = "single-listing?type=" + JSON.stringify(json.result[3].category_code).slice(1, -1) + "&id=" + JSON.stringify(json.result[3].place_id).slice(1, -1)
 
                 document.getElementById("41").innerHTML = JSON.stringify(json.result[4].place_name).slice(1, -1)
                 document.getElementById("42").innerHTML = JSON.stringify(json.result[4].location.address).slice(1, -1)
                 if(json.result[4].thumbnail_url){document.getElementById("43").src = JSON.stringify(json.result[4].thumbnail_url).slice(1, -1)}
+                id[4]=JSON.stringify(json.result[4].place_id).slice(1, -1)
                 // document.getElementById("44").href = "single-listing?type=" + JSON.stringify(json.result[4].category_code).slice(1, -1) + "&id=" + JSON.stringify(json.result[4].place_id).slice(1, -1)
             });
-            });
+        }
+            
         </script>
     </body>
 </html>
