@@ -22,12 +22,11 @@ function getdata() {
                 name = (JSON.stringify(json.result.place_name).slice(1, -1))
                 $(".name").eq(i).text((JSON.stringify(json.result.place_name).slice(1, -1)));
                 $(".detail").eq(i).text((JSON.stringify(json.result.destination).slice(1, -1)));
-                if(json.result.web_picture_urls[0]){
-                    console.log("qwe")
+                try{
                     $(".pic").eq(i).attr('src', JSON.stringify(json.result.web_picture_urls[0]).slice(1, -1));
-                }else{
-                    console.log("qwe")
-                }
+                }catch{
+                    $(".pic").eq(i).attr('src', "/assets/img/no-image.jpg");
+                }   
             })
         
     }
