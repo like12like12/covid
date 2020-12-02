@@ -11,14 +11,17 @@ function getdata() {
         }
     })
     
-    for (let i = 0; i < id.length; i++) {
-            api = "https://tatapi.tourismthailand.org/tatapi/v5/" + "ACCOMMODATION" + "/" + id[i]
+    for (let i = 0; i < id.length; i++) { 
+        // api = "https://tatapi.tourismthailand.org/tatapi/v5/accommodation/P02000001"
+            api = "https://tatapi.tourismthailand.org/tatapi/v5/" + id[i]
+            // console.log("https://tatapi.tourismthailand.org/tatapi/v5/" + "accommodation" + "/" + id[i])
+            console.log(api)
             $.getJSON(api, function(json) {
                 console.log(json)
                 console.log(JSON.stringify(json.result.place_name).slice(1, -1))
                 name = (JSON.stringify(json.result.place_name).slice(1, -1))
                 $(".name").eq(i).text((JSON.stringify(json.result.place_name).slice(1, -1)));
-                // $(".destination").eq(i).text((JSON.stringify(json.result.destination).slice(1, -1)));
+                $(".detail").eq(i).text((JSON.stringify(json.result.destination).slice(1, -1)));
                 $(".pic").eq(i).attr('src', JSON.stringify(json.result.web_picture_urls[0]).slice(1, -1));
         })
     }
